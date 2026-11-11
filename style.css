@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Great+Vibes&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #07040d;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+}
+
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-romantic { font-family: 'Great Vibes', cursive; }
+
+.canvas-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+#canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.glass-card {
+  background: rgba(18, 6, 31, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 60, 200, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 60, 200, 0.2);
+}
+
+.yusuke-gradient-text {
+  background: linear-gradient(90deg, #ff3cc8, #00f2fe, #a855f7, #fbbf24, #ff3cc8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 6s ease infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 60, 200, 0.6));
+}
+
+@keyframes colorShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-neon { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn-neon:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(255, 60, 200, 0.5); }
+.btn-neon:active { transform: translateY(1px); }
+
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0) scale(0.8); }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.4); }
+}
+
+.floating-heart {
+  position: absolute;
+  pointer-events: none;
+  animation: floatUp 1.2s ease-out forwards;
+  color: #ff3cc8;
+  font-size: 1.5rem;
+}

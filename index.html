@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kit &amp; Yusuke — Synthwave Love</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="relative flex flex-col justify-between h-screen select-none">
+  <div class="canvas-container"><canvas id="canvas"></canvas></div>
+
+  <div class="relative z-10 flex flex-col justify-between h-full p-4 md:p-6 pointer-events-none">
+    <header class="flex flex-col sm:flex-row items-center justify-between gap-3 glass-card p-3 md:p-4 rounded-2xl pointer-events-auto">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-pink-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-pink-500/30">
+          <i class="fa-solid fa-heart text-black text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-xl md:text-2xl font-black font-orbitron tracking-wider">
+            FOR <span class="yusuke-gradient-text text-2xl md:text-3xl font-extrabold">YUSUKE</span>
+          </h1>
+          <p class="text-xs text-gray-300">Synthwave Interactive Space</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap justify-center text-xs">
+        <button id="playPauseBtn" class="btn-neon px-3 py-2 rounded-xl bg-slate-900/80 border border-cyan-400/40 text-cyan-300 flex items-center gap-2">
+          <i class="fa-solid fa-pause" id="playIcon"></i><span id="playText">Pause</span>
+        </button>
+        <button id="speedBtn" class="btn-neon px-3 py-2 rounded-xl bg-slate-900/80 border border-pink-500/40 text-pink-300 flex items-center gap-2">
+          <i class="fa-solid fa-gauge-high"></i><span>Speed: <span id="speedVal">Fast</span></span>
+        </button>
+        <button id="themeBtn" class="btn-neon px-3 py-2 rounded-xl bg-slate-900/80 border border-purple-400/40 text-purple-300 flex items-center gap-2">
+          <i class="fa-solid fa-palette"></i><span>Theme: <span id="themeName">Neon Cyan</span></span>
+        </button>
+      </div>
+    </header>
+
+    <main class="self-center w-full max-w-md my-auto pointer-events-auto relative">
+      <div class="glass-card p-5 md:p-6 rounded-3xl text-center space-y-5 transform hover:scale-[1.01] transition-all relative overflow-hidden">
+        <div class="relative w-full h-48 md:h-52 rounded-2xl overflow-hidden border border-pink-500/40 shadow-lg shadow-pink-500/20 group">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Couple under moonlight" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-3 left-4 right-4 flex justify-between items-center text-xs text-pink-300 font-medium">
+            <span><i class="fa-solid fa-moon mr-1"></i> Moonlit Moments</span>
+            <span class="font-orbitron text-cyan-300">Kit &amp; Yusuke</span>
+          </div>
+        </div>
+
+        <div class="min-h-[48px] flex items-center justify-center relative" id="loveArea">
+          <p id="lovePhrase" class="text-2xl md:text-3xl font-romantic font-bold yusuke-gradient-text transition-all duration-300 scale-100">Click Express Love ❤️</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <button id="expressLoveBtn" class="btn-neon py-3 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-500 text-white font-bold text-xs md:text-sm shadow-lg shadow-pink-500/30 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-heart-pulse text-base animate-bounce"></i><span>Express Love</span>
+          </button>
+          <button id="openMsgBtn" class="btn-neon py-3 px-4 rounded-xl bg-gradient-to-r from-purple-600 to-cyan-500 text-white font-bold text-xs md:text-sm shadow-lg shadow-cyan-500/30 flex items-center justify-center gap-2">
+            <i class="fa-solid fa-envelope-open-text text-base"></i><span>Message</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="flex justify-between items-center text-xs text-gray-400 glass-card px-4 py-2 rounded-xl pointer-events-auto">
+      <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-pink-500 animate-ping"></span><span>Canvas 60 FPS</span></div>
+      <div>Made with ❤️ for Yusuke</div>
+    </footer>
+  </div>
+
+  <div id="msgModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="glass-card max-w-lg w-full p-6 md:p-8 rounded-3xl relative space-y-5 transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto flex flex-col justify-between" id="modalContent">
+      <div>
+        <button id="closeMsgBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+        <div class="flex items-center gap-3 border-b border-pink-500/30 pb-3 mb-4">
+          <div class="w-9 h-9 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 border border-pink-500/40"><i class="fa-solid fa-envelope-heart text-lg"></i></div>
+          <div><h3 class="text-lg font-bold font-orbitron neon-text-pink">A Message For You</h3><p class="text-xs text-cyan-300">From Kit with love</p></div>
+        </div>
+        <p class="text-sm md:text-base text-gray-200 leading-relaxed font-light text-justify italic">
+          "Loving you feels like finding a place where my heart can finally rest. You’re not just my partner, you’re my comfort, my safe space, and the person I want to share all the little and big moments of life with. I love the way you make ordinary days feel special just by being there. With you, I can be completely myself without pretending or hiding anything. I may not always have the perfect words to express how much you mean to me, but I hope you know that my love is in every little thing—the way I care about you, think about you, miss you, and smile whenever I see you. I don’t need a perfect relationship; I just want us, growing together, choosing each other, and creating a thousand beautiful memories along the way. ❤️"
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-3 pt-4 border-t border-purple-500/30 mt-4">
+        <button id="backBtn" class="btn-neon py-2.5 px-4 rounded-xl bg-slate-900/90 border border-gray-500/40 text-gray-300 font-bold text-xs md:text-sm flex items-center justify-center gap-2 hover:bg-slate-800"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button>
+        <button id="stayBtn" class="btn-neon py-2.5 px-4 rounded-xl bg-gradient-to-r from-pink-600 to-rose-500 text-white font-bold text-xs md:text-sm shadow-lg shadow-pink-500/30 flex items-center justify-center gap-2"><i class="fa-solid fa-heart"></i><span>Stay, I love u too</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
